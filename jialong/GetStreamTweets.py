@@ -1,4 +1,3 @@
-#!/usr/local/bin/python3
 import tweepy
 import json
 from tweepy import Stream
