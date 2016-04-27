@@ -11,7 +11,7 @@ access_token = '713507723325808641-inJY6PB7ZAaRvcg4XEXgvcIkiq9yVmN'
 access_token_secret = 'p7ilE2q6vPuz47kNvodLhGPIFirBm1PFbK6Juud0oGVEn'
 
 tweets = []
-
+num = 0
 class listener(StreamListener):
 
     def __init__(self):
@@ -23,8 +23,7 @@ class listener(StreamListener):
         tweet = all_data["text"]
         if tweet != '':
             self.num_tweets += 1
-            #print(tweet)
-            if self.num_tweets <= int(num):
+            if self.num_tweets <= num:
                 tweets.append(tweet)
                 return True
             else:
@@ -34,13 +33,15 @@ class listener(StreamListener):
     def on_error(self, status):
         print(status)
 
-num = str(input("Please give how many tweets you want to get: "))
-print('Collecting stream tweets ...')
-auth = tweepy.OAuthHandler(consumer_key, consumer_secret)
-auth.set_access_token(access_token, access_token_secret)
+def getStreamTweets(number):
+    global num
+    num = number
+    print('Collecting stream tweets ...')
+    auth = tweepy.OAuthHandler(consumer_key, consumer_secret)
+    auth.set_access_token(access_token, access_token_secret)
 
-twitterStream = Stream(auth, listener())
-twitterStream.filter(track=["hillary"], languages=['en'])
+    twitterStream = Stream(auth, listener())
+    twitterStream.filter(track=["hillary"], languages=['en'])
 
-print(tweets)
-assert (len(tweets) == int(num))
+    assert (len(tweets) == num)
+    return tweets
