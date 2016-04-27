@@ -4,7 +4,11 @@ import csv
 import nltk
 import re
 import time
+import nltk.classify
+from random import shuffle
 from nltk.classify import apply_features
+from sklearn.svm import LinearSVC
+from sklearn.metrics import classification_report
 
 # clean up tweets:
 # remove emoticons
@@ -66,6 +70,8 @@ f = open('stop-words_english.txt','r')
 for word in f:
     stopwords.append(word.rstrip())
 f.close()
+
+print('Processing tweets ...')
 # read csv training set
 csvf = open('training.csv', 'r', encoding=enc)
 reader = csv.reader(csvf)
@@ -90,20 +96,39 @@ csvf.close()
 # test data/training data should be 1 : 4
 negcutoff = int(len(neg_tweets)*4/5)
 poscutoff = int(len(pos_tweets)*4/5)
+tweets = neg_tweets + pos_tweets
+training_list = neg_tweets[:negcutoff] + pos_tweets[:poscutoff]
+test_list = neg_tweets[negcutoff:] + pos_tweets[poscutoff:]
+# shuffle data
+shuffle(tweets)
+shuffle(training_list)
+shuffle(test_list)
 
-word_features = get_word_features(get_words_in_tweets(neg_tweets + pos_tweets))
-training_set = nltk.classify.apply_features(extract_features, neg_tweets[:negcutoff] + pos_tweets[:poscutoff])
-test_set = nltk.classify.apply_features(extract_features, neg_tweets[negcutoff:] + pos_tweets[poscutoff:])
-print('Train on %d instances, Test on %d instances ...' % (len(training_set), len(test_set)))
+word_features = get_word_features(get_words_in_tweets(tweets))
+training_set = nltk.classify.apply_features(extract_features, training_list)
+test_set = nltk.classify.apply_features(extract_features, test_list)
+model = str(input("Please give the model you want to use to train (nb or svm) : "))
+#print('Train on %d instances, Test on %d instances ...' % (len(training_set), len(test_set)))
 start = time.clock()
-classifier = nltk.NaiveBayesClassifier.train(training_set) # time consuming operation
+classifier = None
+if model == 'nb':
+    print('Train on %d instances, Test on %d instances using Naive Bayes Classifier...' % (len(training_set), len(test_set)))
+    classifier = nltk.NaiveBayesClassifier.train(training_set) # time consuming operation
+elif model == 'svm':
+    print('Train on %d instances, Test on %d instances using Support Vector Machine...' % (len(training_set), len(test_set)))
+    classifier = nltk.classify.SklearnClassifier(LinearSVC()).train(training_set)
+    
 print('Training complete.')
 print("Training time:", str((time.clock() - start)),"secs")
 start = time.clock()
-accuracy = nltk.classify.util.accuracy(classifier, test_set)
+accuracy = nltk.classify.util.accuracy(classifier, test_set) # time consuming operation
 print("Get accuracy time:", str((time.clock() - start)),"secs")
 print('accuracy:', accuracy)
-classifier.show_most_informative_features(20)
+if model == 'nb':
+    classifier.show_most_informative_features(20)
+elif model == 'svm':
+    #print(classification_report(training_set, test_set, target_names=['pos','neg']))
+    pass
 
 # simple test
 tweet = 'Your song is annoying' # Negative
