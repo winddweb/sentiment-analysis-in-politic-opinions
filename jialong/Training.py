@@ -28,7 +28,7 @@ def extract_features(document):
         features['contains(%s)' % word] = (word in document_words)
     return features
 
-def do_training(userinput):
+def do_training(userinput, model):
     trainingRow = int(userinput) / 2
     firstNegRow = 0
     firstPosRow = 800000
@@ -70,7 +70,6 @@ def do_training(userinput):
     word_features = get_word_features(get_words_in_tweets(tweets))
     training_set = nltk.classify.apply_features(extract_features, training_list)
     test_set = nltk.classify.apply_features(extract_features, test_list)
-    model = str(input("Please give the model you want to use to train (nb or svm) : "))
 
     start = time.clock()
     classifier = None
@@ -82,11 +81,12 @@ def do_training(userinput):
         classifier = nltk.classify.SklearnClassifier(LinearSVC()).train(training_set)
     
     print('Training complete.')
-    print("Training time:", str((time.clock() - start)),"secs")
+    training_time = str((time.clock() - start))
+    print("Training time:", training_time,"secs")
     start = time.clock()
     accuracy = nltk.classify.util.accuracy(classifier, test_set) # time consuming operation
     print("Get accuracy time:", str((time.clock() - start)),"secs")
     print('accuracy:', accuracy)
     if model == 'nb':
         classifier.show_most_informative_features(20)
-    return classifier
+    return (classifier, training_time, accuracy)
