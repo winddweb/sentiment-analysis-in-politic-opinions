@@ -6,7 +6,12 @@ import pickle
 from classifier import MyClassifier
 
 # read trained classifier from disk
-f = open('../model/classifier.pickle', 'rb')
+f = ''
+model = str(input("Please give the model you want to use (nb or svm) : "))
+if model == 'nb':
+	f = open('../model/nb_classifier.pickle', 'rb')
+elif model == 'svm':
+	f = open('../model/svm_classifier.pickle', 'rb')
 my_classifier = pickle.load(f)
 classifier = getattr(my_classifier, 'classifier')
 f.close()
