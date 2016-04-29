@@ -1,0 +1,40 @@
+Prerequsite
+To run the program, you need to install following python packages if you don't have it:
+-nltk: http://www.nltk.org/install.html
+-scikit-learn: pip3 install -U scikit-learn
+-scipy: pip3 install -U scipy
+-tweepy: http://docs.tweepy.org/en/v3.5.0/install.html
+
+How to run the program: demo.py
+Grant execuation : chmod +x ./demo.py
+
+Steps:
+"Please give how many data you want to train: " - Give the number of dataset you want to train
+"Please give the model you want to use to train (nb or svm) :" - input 'nb' or 'svm'
+"Please give how many real time tweets you want to collect: " - input number of real time tweets you want to collect
+
+Then you will see the output like:
+"RT @tedcruz: .@carlyfiorina: Donald and Hillary would both be disastrous for this nation. They’re flip sides of the same coin https://t.co/… => neg"
+
+Sample
+$ ./demo.py
+Please give how many data you want to train: 100
+Processing tweets ...
+Please give the model you want to use to train (nb or svm) : svm
+Train on 80 instances, Test on 20 instances using Support Vector Machine...
+Training complete.
+Training time: 0.047188999999999925 secs
+Get accuracy time: 0.013074999999999726 secs
+accuracy: 0.75
+Please give how many real time tweets you want to collect: 10
+Collecting stream tweets ...
+New story on NPR: Donald Trump Accuses Hillary Clinton Of Playing The 'Woman Card' https://t.co/VFxupGPb0P => neg
+@MattyP57 @PaulWDrake @mitchellvii USA Today 40% of GOP voters doubt they will support Trump. Will either vote Hillary, 3rd party, none. => neg
+Carly, when are you going to realize that Sleazy Ted Cruz uses people for his OWN personal gain? Sounds like Hillary https://t.co/PYPkdYwg0w => neg
+Carson: Polls Showing Hillary Beating Trump Are 'Bunch of Garbage': https://t.co/xbuorrh7sb => neg
+RT @tedcruz: .@carlyfiorina: Donald and Hillary would both be disastrous for this nation. They’re flip sides of the same coin https://t.co/… => neg
+RT @KaivanShroff: It's not only Trump supporters who accuse Hillary of playing the #womancard => neg
+RT @leahmcelrath: There is a noteworthy #BlockSalon movement based on this piece urging the FBI to indict Hillary Clinton. https://t.co/5uN… => neg
+RT @KypreeDaGawd: Who would you rather have as president? RT for this roach or like for Hillary https://t.co/GdAr2j5ZP7 => neg
+RT @fuckowiak: me when im watching tv &amp; i see that hillary clinton keeps winning states https://t.co/ouo9nP0JVT => neg
+RT @hsbosley: @CamelotGypsy  Let them know that we aren't done! That Bernie is more electable than Hillary! #BernieNameYourVP #FeelTheBern… => neg
