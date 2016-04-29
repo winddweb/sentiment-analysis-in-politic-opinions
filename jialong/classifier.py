@@ -30,7 +30,7 @@ class MyClassifier():
 
     def get_word_features(self, wordlist):
         wordlist = nltk.FreqDist(wordlist)
-        return wordlist.keys()
+        return list(wordlist.keys())
 
     def extract_features(self, document):
         document_words = set(document)
