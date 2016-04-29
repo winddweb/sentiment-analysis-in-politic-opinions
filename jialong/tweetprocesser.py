@@ -31,7 +31,7 @@ def clean_symbol(tweet):
 
 def get_stop_words():
     stopwords = []
-    f = open('../dataset/stop-words_english.txt','r')
+    f = open('../resource/stop-words_english.txt','r')
     for word in f:
         stopwords.append(word.rstrip())
     f.close()

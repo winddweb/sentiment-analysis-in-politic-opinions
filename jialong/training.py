@@ -39,7 +39,7 @@ def do_training(userinput, model):
     rowNum = 0
     print('Processing tweets ...')
     # read csv training set
-    csvf = open('../dataset/training.csv', 'r', encoding=enc)
+    csvf = open('../data/training.csv', 'r', encoding=enc)
     reader = csv.reader(csvf)
     for row in reader:   # iterates the rows of the file in orders
         if rowNum < firstNegRow + trainingRow:
