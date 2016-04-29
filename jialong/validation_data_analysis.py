@@ -11,7 +11,7 @@ step = int(sys.argv[3])
 model = sys.argv[4]
 mode = sys.argv[5] # 'w', 'a'
 
-f = open(model + 'data', mode) # model name as file name
+f = open(model + 'validation', mode) # model name as file name
 for num in range(start, end, step):
     classifier = MyClassifier(num, model)
     classifier.train()
