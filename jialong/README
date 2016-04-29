@@ -1,8 +1,8 @@
 Prerequsite
 To run the program, you need to install following python packages if you don't have it:
 -nltk: http://www.nltk.org/install.html
--scikit-learn: pip install -U scikit-learn
--scipy: pip install -U scipy
+-scikit-learn: pip3 install -U scikit-learn
+-scipy: pip3 install -U scipy
 -tweepy: http://docs.tweepy.org/en/v3.5.0/install.html
 
 How to run the program: demo.py
