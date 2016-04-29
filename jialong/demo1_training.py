@@ -2,22 +2,23 @@
 
 import getstreamtweets
 import tweetprocesser
-import training
 import csv
 import nltk.classify
 import random
+from classifier import MyClassifier
 
 enc = 'iso-8859-15'
-userinput = str(input("Please give how many data you want to train: "))
+number = str(input("Please give how many data you want to train: "))
 model = str(input("Please give the model you want to use to train (nb or svm) : "))
-classifier = training.do_training(userinput, model)[0];
+classifier = MyClassifier(number, model)
+classifier.train()
 
 tweets = []
 # read test data
 print('Processing tweets ...')
 csvf = open('../data/test.csv', 'r', encoding=enc)
 reader = csv.reader(csvf)
-num_test_tweets = int(userinput)*1/4
+num_test_tweets = int(number)*1/4
 count = 0
 for row in reader:   # iterates the rows of the file in orders
     if count > num_test_tweets: break;
@@ -29,6 +30,6 @@ for row in reader:   # iterates the rows of the file in orders
 csvf.close()
 
 random.shuffle(tweets)
-test_set = nltk.classify.apply_features(training.extract_features, tweets)
-accuracy = nltk.classify.util.accuracy(classifier, test_set)
+test_set = nltk.classify.apply_features(classifier.extract_features, tweets)
+accuracy = nltk.classify.util.accuracy(getattr(classifier, 'classifier'), test_set)
 print('Testing Accuracy is :', accuracy)
