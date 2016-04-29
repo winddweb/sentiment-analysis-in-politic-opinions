@@ -2,7 +2,7 @@ import re
 import nltk.classify
 
 emoticons = [':)',':-)',':D','=D','=)',':(',':-(','=(','=[',')-:']
-slang = {'lol':'happy', 'lmao':'happy','rof':'happy','jk':'joking','wanna':'want to',
+slang = {'lol':'laugh', 'lmao':'laugh','rof':'happy','jk':'joking','wanna':'want to',
         'dam':'annoying', 'hagn':'good', 'hand':'nice', 'stfu':'annoying', 
         'tyia':'thankful', 'tyvm':'thankful','yw':'welcome'
 }
@@ -16,12 +16,18 @@ slang = {'lol':'happy', 'lmao':'happy','rof':'happy','jk':'joking','wanna':'want
 def preprocess(tweets, stopwords):
     res = []
     for part in tweets:
+        part = part.lower()
         if part in emoticons: continue
-        if part.lower() in slang:
-            res.append(slang[part.lower()])
-        if part.lower() in stopwords: continue
-        if len(part) < 3 and part.lower() != 'no': continue
-        res.append(part.lower())
+        if part in slang:
+            res.append(slang[part])
+            continue
+        if part in stopwords: continue
+        if len(part) < 3 and part != 'no': continue
+        if part == '...': continue
+        if part == "n't": 
+            res.append('not')
+            continue
+        res.append(part)
     return res
 
 def clean_symbol(tweet):

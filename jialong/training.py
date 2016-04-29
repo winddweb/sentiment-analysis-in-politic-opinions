@@ -54,7 +54,6 @@ def do_training(userinput, model):
                 rowNum += 1
             else:
                 break
-
     csvf.close()
     # test data/training data should be 1 : 4
     negcutoff = int(len(neg_tweets)*4/5)
@@ -74,19 +73,17 @@ def do_training(userinput, model):
     start = time.clock()
     classifier = None
     if model == 'nb':
-        print('Train on %d instances, Test on %d instances using Naive Bayes Classifier...' % (len(training_set), len(test_set)))
+        print('Train on %d data, Validate on %d data using Naive Bayes Classifier...' % (len(training_set), len(test_set)))
         classifier = nltk.NaiveBayesClassifier.train(training_set) # time consuming operation
     elif model == 'svm':
-        print('Train on %d instances, Test on %d instances using Support Vector Machine...' % (len(training_set), len(test_set)))
+        print('Train on %d data, Validate on %d data using Support Vector Machine...' % (len(training_set), len(test_set)))
         classifier = nltk.classify.SklearnClassifier(LinearSVC()).train(training_set)
     
     print('Training complete.')
     training_time = str((time.clock() - start))
     print("Training time:", training_time,"secs")
-    start = time.clock()
     accuracy = nltk.classify.util.accuracy(classifier, test_set) # time consuming operation
-    print("Get accuracy time:", str((time.clock() - start)),"secs")
-    print('accuracy:', accuracy)
+    print('Validation Accuracy is :', accuracy)
     if model == 'nb':
-        classifier.show_most_informative_features(20)
+        classifier.show_most_informative_features(15)
     return (classifier, training_time, accuracy)
