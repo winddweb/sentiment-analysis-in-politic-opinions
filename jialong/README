@@ -1,40 +1,42 @@
-Prerequsite
-To run the program, you need to install following python packages if you don't have it:
+To run the program, you need:
+1.install following python packages if you don't have it:
 -nltk: http://www.nltk.org/install.html
 -scikit-learn: pip3 install -U scikit-learn
 -scipy: pip3 install -U scipy
 -tweepy: http://docs.tweepy.org/en/v3.5.0/install.html
+2.Get the dataset from http://cs.stanford.edu/people/alecmgo/trainingandtestdata.zip. And put them in the /data/ directory rename them to: test.csv and training.csv
+3.Change the first line of python interpreter to the one in your machine: #! /usr/local/bin/python3
 
-How to run the program: demo.py
-Grant execuation : chmod +x ./demo.py
-
-Steps:
+How to run it?
+1.Grant execuation : chmod +x ./demo1_training.py
+2.Steps
 "Please give how many data you want to train: " - Give the number of dataset you want to train
 "Please give the model you want to use to train (nb or svm) :" - input 'nb' or 'svm'
-"Please give how many real time tweets you want to collect: " - input number of real time tweets you want to collect
-
-Then you will see the output like:
-"RT @tedcruz: .@carlyfiorina: Donald and Hillary would both be disastrous for this nation. They’re flip sides of the same coin https://t.co/… => neg"
-
-Sample
-$ ./demo.py
+3.Sample output
+./demo1_training.py
 Please give how many data you want to train: 100
+Please give the model you want to use to train (nb or svm) : nb
 Processing tweets ...
-Please give the model you want to use to train (nb or svm) : svm
-Train on 80 instances, Test on 20 instances using Support Vector Machine...
+Train on 80 data, Validate on 20 data using Naive Bayes Classifier...
 Training complete.
-Training time: 0.047188999999999925 secs
-Get accuracy time: 0.013074999999999726 secs
-accuracy: 0.75
-Please give how many real time tweets you want to collect: 10
-Collecting stream tweets ...
-New story on NPR: Donald Trump Accuses Hillary Clinton Of Playing The 'Woman Card' https://t.co/VFxupGPb0P => neg
-@MattyP57 @PaulWDrake @mitchellvii USA Today 40% of GOP voters doubt they will support Trump. Will either vote Hillary, 3rd party, none. => neg
-Carly, when are you going to realize that Sleazy Ted Cruz uses people for his OWN personal gain? Sounds like Hillary https://t.co/PYPkdYwg0w => neg
-Carson: Polls Showing Hillary Beating Trump Are 'Bunch of Garbage': https://t.co/xbuorrh7sb => neg
-RT @tedcruz: .@carlyfiorina: Donald and Hillary would both be disastrous for this nation. They’re flip sides of the same coin https://t.co/… => neg
-RT @KaivanShroff: It's not only Trump supporters who accuse Hillary of playing the #womancard => neg
-RT @leahmcelrath: There is a noteworthy #BlockSalon movement based on this piece urging the FBI to indict Hillary Clinton. https://t.co/5uN… => neg
-RT @KypreeDaGawd: Who would you rather have as president? RT for this roach or like for Hillary https://t.co/GdAr2j5ZP7 => neg
-RT @fuckowiak: me when im watching tv &amp; i see that hillary clinton keeps winning states https://t.co/ouo9nP0JVT => neg
-RT @hsbosley: @CamelotGypsy  Let them know that we aren't done! That Bernie is more electable than Hillary! #BernieNameYourVP #FeelTheBern… => neg
+Training time: 0.0518679999999998 secs
+Validation Accuracy is : 0.6
+Most Informative Features
+           contains(day) = True              neg : pos    =      3.0 : 1.0
+          contains(time) = True              neg : pos    =      1.8 : 1.0
+         contains(laugh) = True              neg : pos    =      1.7 : 1.0
+         contains(sleep) = True              neg : pos    =      1.7 : 1.0
+           contains(not) = True              neg : pos    =      1.5 : 1.0
+          contains(love) = True              pos : neg    =      1.4 : 1.0
+         contains(going) = True              neg : pos    =      1.4 : 1.0
+           contains(bed) = True              neg : pos    =      1.4 : 1.0
+         contains(watch) = True              neg : pos    =      1.4 : 1.0
+       contains(tonight) = False             neg : pos    =      1.1 : 1.0
+       contains(twitter) = False             neg : pos    =      1.1 : 1.0
+           contains(not) = False             pos : neg    =      1.1 : 1.0
+           contains(day) = False             pos : neg    =      1.1 : 1.0
+           contains(cry) = False             pos : neg    =      1.1 : 1.0
+          contains(time) = False             pos : neg    =      1.1 : 1.0
+Processing test tweets ...
+Testing Accuracy is : 0.36
+

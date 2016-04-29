@@ -15,7 +15,7 @@ classifier.train()
 
 tweets = []
 # read test data
-print('Processing tweets ...')
+print('Processing test tweets ...')
 csvf = open('../data/test.csv', 'r', encoding=enc)
 reader = csv.reader(csvf)
 num_test_tweets = int(number)*1/4
