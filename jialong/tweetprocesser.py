@@ -21,7 +21,7 @@ def preprocess(tweets, stopwords):
             res.append(slang[part.lower()])
         if part.lower() in stopwords: continue
         if len(part) < 3 and part.lower() != 'no': continue
-        res.append(part)
+        res.append(part.lower())
     return res
 
 def clean_symbol(tweet):
