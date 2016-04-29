@@ -3,8 +3,8 @@
 import sys
 from classifier import MyClassifier
 
-# ./analysis.py <start> <end> <step> <model> <mode>:
-# eg ./analysis.py 100 5001 300 nb a
+# ./validation_data_analysis.py <start> <end> <step> <model> <mode>:
+# ./validation_data_analysis.py 125 12501 625 nb a
 start = int(sys.argv[1])
 end = int(sys.argv[2])
 step = int(sys.argv[3])
