@@ -28,8 +28,8 @@ for row in reader:   # iterates the rows of the file in orders
         if row[0] == '0': tweets.append((tweet, 'neg'))
         elif row[0] == '4': tweets.append((tweet, 'pos'))
 csvf.close()
-
 random.shuffle(tweets)
+
 test_set = nltk.classify.apply_features(classifier.extract_features, tweets)
 accuracy = nltk.classify.util.accuracy(getattr(classifier, 'classifier'), test_set)
 print('Testing Accuracy is :', accuracy)
