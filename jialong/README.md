@@ -11,8 +11,9 @@ To run the program, you need:
 - scipy: `pip3 install -U scipy`
 - tweepy: http://docs.tweepy.org/en/v3.5.0/install.html
 
-2.Get the dataset from http://cs.stanford.edu/people/alecmgo/trainingandtestdata.zip. And put them in the /data/ directory rename them to: test.csv and training.csv
-3.Change the first line of python interpreter to the one in your machine: #! /usr/local/bin/python3
+2.Get the dataset from http://cs.stanford.edu/people/alecmgo/trainingandtestdata.zip. 
+And put them in the `/data/` directory rename them to: `test.csv` and `training.csv`
+3.Change the first line of python interpreter to the one in your machine: `#! /usr/local/bin/python3`
 
 
 ## How to run it?
@@ -20,8 +21,14 @@ To run the program, you need:
 1.Grant execuation : `chmod +x ./demo1_training.py`
 
 2.Steps
-"Please give how many data you want to train: " - Give the number of dataset you want to train
-"Please give the model you want to use to train (nb or svm) :" - input 'nb' or 'svm'
+
+```bash
+$ "Please give how many data you want to train: " 
+$ # Give the number of dataset you want to train
+
+$ "Please give the model you want to use to train (nb or svm) :" 
+$ # input 'nb' or 'svm'
+```
 
 3.Sample output
 
