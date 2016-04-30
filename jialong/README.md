@@ -13,6 +13,7 @@ To run the program, you need:
 
 2.Get the dataset from http://cs.stanford.edu/people/alecmgo/trainingandtestdata.zip. 
 And put them in the `/data/` directory rename them to: `test.csv` and `training.csv`
+
 3.Change the first line of python interpreter to the one in your machine: `#! /usr/local/bin/python3`
 
 

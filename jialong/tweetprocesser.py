@@ -1,4 +1,6 @@
 import re
+import csv
+import random
 import nltk.classify
 
 emoticons = [':)',':-)',':D','=D','=)',':(',':-(','=(','=[',')-:']
@@ -42,3 +44,18 @@ def get_stop_words():
         stopwords.append(word.rstrip())
     f.close()
     return stopwords
+
+def label_test_tweets():
+    enc = 'iso-8859-15'
+    tweets = []
+    print('Tagging test data...')
+    # read all the test data
+    csvf = open('../data/test.csv', 'r', encoding=enc)
+    reader = csv.reader(csvf)
+    for row in reader:   # iterates the rows of the file in orders
+        tweet = clean_symbol(row[-1])
+        if row[0] == '0': tweets.append((tweet, 'neg'))
+        elif row[0] == '4': tweets.append((tweet, 'pos'))
+    csvf.close()
+    random.shuffle(tweets)
+    return tweets
