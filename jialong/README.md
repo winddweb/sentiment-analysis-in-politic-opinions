@@ -9,7 +9,7 @@ To run the program, you need:
 - nltk: http://www.nltk.org/install.html
 - scikit-learn: `pip3 install -U scikit-learn`
 - scipy: `pip3 install -U scipy`
-- tweepy: http://docs.tweepy.org/en/v3.5.0/install.html
+- tweepy: `pip3 install tweepy` http://docs.tweepy.org/en/v3.5.0/install.html
 
 2.Get the dataset from http://cs.stanford.edu/people/alecmgo/trainingandtestdata.zip. 
 And put them in the `/data/` directory rename them to: `test.csv` and `training.csv`
