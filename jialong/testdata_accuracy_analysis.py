@@ -16,17 +16,7 @@ step = int(sys.argv[3])
 model = sys.argv[4]
 mode = sys.argv[5] # 'w', 'a'
 
-enc = 'iso-8859-15'
-tweets = []
-# read all the test data
-csvf = open('../data/test.csv', 'r', encoding=enc)
-reader = csv.reader(csvf)
-for row in reader:   # iterates the rows of the file in orders
-    tweet = tweetprocesser.clean_symbol(row[-1])
-    if row[0] == '0': tweets.append((tweet, 'neg'))
-    elif row[0] == '4': tweets.append((tweet, 'pos'))
-csvf.close()
-random.shuffle(tweets)
+tweets = tweetprocesser.label_test_tweets()
 
 f = open(model + 'test', mode) # model name as file name
 for num in range(start, end, step):
