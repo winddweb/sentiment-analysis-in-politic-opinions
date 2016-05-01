@@ -7,7 +7,6 @@ import random
 import nltk.classify
 from classifier import MyClassifier
 
-# train 125,000 data
 number = str(input("Please give how many data you want to train: "))
 model = str(input("Please give the model you want to use to train (nb or svm) : "))
 classifier = MyClassifier(number, model)

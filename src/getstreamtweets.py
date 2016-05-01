@@ -23,6 +23,7 @@ class listener(StreamListener):
         if tweet != '':
             self.num_tweets += 1
             if self.num_tweets <= num:
+                print(tweet)
                 tweets.append(tweet)
                 return True
             else:

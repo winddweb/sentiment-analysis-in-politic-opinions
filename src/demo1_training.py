@@ -1,6 +1,5 @@
 #! /usr/local/bin/python3
 
-import getstreamtweets
 import tweetprocesser
 import csv
 import nltk.classify
