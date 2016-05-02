@@ -61,3 +61,45 @@ Most Informative Features
 Processing test tweets ...
 Testing Accuracy is : 0.36
 ```
+
+4. If you want to run demo2, please make sure you have the classifier in the /model directory.
+If not, please first run train_classifier_ondisk.py, or it will not find the specific classifier.
+
+```bash
+$./train_classifier_ondisk.py
+Please give how many data you want to train: 500
+Please give the model you want to use to train (nb or svm) : svm
+Processing tweets ...
+Train on 400 data, Validate on 100 data using Support Vector Machine...
+Training complete.
+Training time: 0.7505410000000001 secs
+Validation Accuracy is : 0.63
+Tagging test data...
+Testing Accuracy is : 0.6545961002785515
+
+$./demo2_classify_live_tweets.py
+Please give the model you want to use (nb or svm) : svm
+Please give how many real time tweets you want to collect: 5
+Collecting stream tweets ...
+And Donald's playing the worst version of "man" too -- angry, ignorant, with bad clothes, manners, ethics, and hair. https://t.co/8vHHJznxBL
+#GeorgeClooney #AmalClooney thanks for attempting to rig the election for Hillary. You LIED about where the $ goes. https://t.co/vQKwGAkAq4
+@News_Liberal @cdmr9816 Then why is my FB page covered in NRA hate Hillary memes? Got some gun humping relatives!
+RT @MardiLovejoy: @PoliticsPeach #Hillary is the most racist candidate in this election  @janewishon @AcUhuru @JoyAnnReid @CAS2328
+RT @21damone: LATEST RASMUSSEN POLL
+TRUMP: 41%
+HILLARY: 39%
+&amp; to think we haven't even started on her.......
+Classify the tweets ...
+========================================
+And Donald's playing the worst version of "man" too -- angry, ignorant, with bad clothes, manners, ethics, and hair. https://t.co/8vHHJznxBL => neg
+#GeorgeClooney #AmalClooney thanks for attempting to rig the election for Hillary. You LIED about where the $ goes. https://t.co/vQKwGAkAq4 => neg
+@News_Liberal @cdmr9816 Then why is my FB page covered in NRA hate Hillary memes? Got some gun humping relatives! => neg
+RT @MardiLovejoy: @PoliticsPeach #Hillary is the most racist candidate in this election  @janewishon @AcUhuru @JoyAnnReid @CAS2328 => neg
+RT @21damone: LATEST RASMUSSEN POLL
+TRUMP: 41%
+HILLARY: 39%
+&amp; to think we haven't even started on her....... => pos
+
+```
+
+
