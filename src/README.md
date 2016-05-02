@@ -99,7 +99,6 @@ RT @21damone: LATEST RASMUSSEN POLL
 TRUMP: 41%
 HILLARY: 39%
 &amp; to think we haven't even started on her....... => pos
-
 ```
 
 
